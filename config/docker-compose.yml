@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongo-database:
+    image: 'mongo'
+    container_name: 'library-catalog-mongo-container'
+    environment:
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./init-mongodb.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ../../mongodb-volume:/data/db
+    ports:
+      - '27017:27017'
